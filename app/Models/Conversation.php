@@ -9,7 +9,7 @@ class Conversation extends Model
 {
     use HasMeta;
 
-    protected $fillable = ["converser_id", "actor"];
+    protected $fillable = ["converser_id", "actor", "refering_actor"];
 
     protected $casts = [
         "meta" => "array"
