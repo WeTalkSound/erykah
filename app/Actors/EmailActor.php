@@ -29,12 +29,23 @@ class EmailActor extends Actor
         }
         $this->createConversation();
 
-        return [ "Awesome! I've saved your email. So tell me, what do you want to know?",
-            "postback" => [
-                "Next Event",
-                "Latest Music",
-                "About me"
-            ]
+        return [ 
+                    "Thats awesome! I've saved your email, so tell me, what do you want to know?" => [ 
+                        [
+                            "content_type" => "text",
+                            "title" => "My Next Event",
+                            "payload" => NextEventActor::class
+                        ], [
+                            "content_type" => "text",
+                            "title" => "My Latest Music",
+                            "payload" => LatestMusicActor::class
+                        ], [
+
+                            "content_type" => "text",
+                            "title" => "My Bio",
+                            "payload" => BioActor::class
+                            ]
+                        ]
             ];
     }
 

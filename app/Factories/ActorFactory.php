@@ -4,10 +4,11 @@ namespace App\Factories;
 
 use App\Contracts\Actor;
 use App\Models\Converser;
+use App\Actors\EmailActor;
 use App\Actors\SaluteActor;
+use App\Actors\BadResponseActor;
 use App\Actors\CollectDataActor;
 use App\Actors\InfoKeyWordActor;
-use App\Actors\BadResponseActor;
 use App\Actors\EvaluateKeywordActor;
 
 abstract class ActorFactory
@@ -94,10 +95,7 @@ abstract class ActorFactory
     protected function getActors(): array
     {
         return [
-            InfoKeyWordActor::class,
-            CollectDataActor::class,
-            BadResponseActor::class,
-            EvaluateKeywordActor::class,
+            EmailActor::class,
             SaluteActor::class,
         ];
     }
