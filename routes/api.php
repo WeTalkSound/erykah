@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::any("/health-check", function(){
+    return \App\Models\Converser::first();
 });
+
+Route::get("facebook", "FacebookController@verify");
+Route::post("facebook", "FacebookController");

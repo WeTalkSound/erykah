@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'facebook' => [
+        'messenger_access_token' => env("MESSENGER_ACCESS_TOKEN")
+    ]
+
 ];
