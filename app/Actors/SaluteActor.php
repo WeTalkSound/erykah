@@ -19,7 +19,7 @@ class SaluteActor extends Actor
      * Converse
      * @return string
      */
-    public function talk(): string
+    public function talk()
     {
         $conversation[] = "Hey there! I'm Erykah's chatbot.";
         $conversaton[] = "I can tell you about my latest music, when my next event is happening and a bit of info about myself";
