@@ -61,6 +61,8 @@ class EmailActor extends Actor
 
     protected function createConversation()
     {
+        $this->converser->update(['name' => $this->message]);
+        
         $this->converser->conversation->delete();
     }
 }

@@ -28,16 +28,14 @@ class FacebookService
         $messageBody['recipient'] = [
             "id" => $actor->getConverser()->identifier
         ];
-        $messageBody['messaging_type'] = 'RESPONSE';
-
-        \Log::info("title: " . $title);
-        \Log::info("message: " . json_encode($message));
 
         $hasQuickReplies = is_array($message);
 
         $text  = $hasQuickReplies ? $title : $message;
 
         if ($hasQuickReplies) {
+
+            $messageBody['messaging_type'] = 'RESPONSE';
 
             $messageBody['message'] = [
                 "text" => $text,
@@ -47,7 +45,9 @@ class FacebookService
             return $messageBody;
         }
 
-        $messageBody['text'] = $text;
+        $messageBody['message'] = [
+            "text" => $text
+        ];
 
         return $messageBody;
     }
