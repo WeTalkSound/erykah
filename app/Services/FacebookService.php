@@ -29,12 +29,15 @@ class FacebookService
             "id" => $actor->getConverser()->identifier
         ];
 
+        \Log::info("title: " . $title);
+        \Log::info("message: " . json_encode($message));
+
         $hasQuickReplies = is_array($message);
 
         $text  = $hasQuickReplies ? $title : $message;
 
         if ($hasQuickReplies) {
-            
+
             $messageBody['message'] = [
                 "text" => $text,
                 "quick_replies" => $message
