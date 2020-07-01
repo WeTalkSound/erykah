@@ -13,26 +13,55 @@ class FacebookService
     {
         $messages = (array) $actor->talk();
 
-        foreach ($messages as $message) {
+        foreach ($messages as $type => $message) {
 
             $response = Http::post(
-                $this->getUrl(), $this->getMessageBody($actor, $message)
+                $this->getUrl(), $this->getMessageBody($actor, $type, $message)
             );
 
             \Log::info($response->body());
         }
     }
 
-    protected function getMessageBody($actor, $message)
+    protected function getMessageBody($actor, $type, $message)
     {
-        return [
-            "recipient" => [
-                "id" => $actor->getConverser()->identifier
-            ],
-            "message" => [
-                "text" => $message
-            ]
+        $messageBody['recipient'] = [
+            "id" => $actor->getConverser()->identifier
         ];
+
+        $messageBody['message'] = [
+            "text" => $message
+        ];
+
+        if ($type == 'postback') {
+            $messageBody['message'] = [
+                'attachment' => [
+                    'type' => 'template',
+                    'payload' => [
+                        'template_type' => 'button',
+                        'text' => 'testing buttons',
+                        'buttons' => $this->getPostbackButtons($message)
+                    ]
+                ]
+                    ];
+        }
+
+        return $messageBody;
+    }
+
+    protected function getPostbackButtons($message)
+    {
+        $messages = (array) $message;
+
+        foreach ($messages as $msg) {
+            $postBackButtons[] = [
+                'type' => 'postback',
+                'title' => $msg,
+                'payload' => $msg
+            ];
+        }
+
+        return $postBackButtons ?? [];
     }
 
     protected function getUrl()

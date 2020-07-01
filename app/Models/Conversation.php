@@ -17,17 +17,6 @@ class Conversation extends Model
 
     public function meta()
     {
-        return [
-            "question" => null,
-            "value" => 0,
-            "has_next_question" => true,
-            "expected_answers" => [],
-            "collect_data" => false,
-            "data" => [
-                "What's your name?" => null,
-                "What's your phone number?" => null,
-                "What's your address?" => null
-            ]
-        ];
+        return [];
     }
 }
