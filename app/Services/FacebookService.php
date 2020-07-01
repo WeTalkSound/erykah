@@ -29,12 +29,21 @@ class FacebookService
             "id" => $actor->getConverser()->identifier
         ];
 
-        $text  = is_array($message) ? $title : $message;
+        $hasQuickReplies = is_array($message);
 
-        $messageBody['message'] = [
-            "text" => $text,
-            "quick_replies" => $message
-        ];
+        $text  = $hasQuickReplies ? $title : $message;
+
+        if ($hasQuickReplies) {
+            
+            $messageBody['message'] = [
+                "text" => $text,
+                "quick_replies" => $message
+            ];
+
+            return $messageBody;
+        }
+
+        $messageBody['text'] = $text;
 
         return $messageBody;
     }
