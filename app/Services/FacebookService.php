@@ -28,6 +28,7 @@ class FacebookService
         $messageBody['recipient'] = [
             "id" => $actor->getConverser()->identifier
         ];
+        $messageBody['messaging_type'] = 'RESPONSE';
 
         \Log::info("title: " . $title);
         \Log::info("message: " . json_encode($message));
