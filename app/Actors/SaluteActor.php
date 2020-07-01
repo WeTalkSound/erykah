@@ -21,9 +21,8 @@ class SaluteActor extends Actor
      */
     public function talk(): string
     {
-        $conversation = "Hey, I can help you get latest information about COVID-19, and also report high risk cases.\n";
-        $conversation .= "Send /info - to get latest information about COVID-19. \n";
-        $conversation .= "Send  /evaluate - to take a risk assessment test";
+        $conversation = "Hey, I'm Erykah's chatbot. I can tell you about my latest music, when my next event is happening and a bit of info about myself.\n";
+        $conversation .= "First, let me have your email so we can keep in touch.";
 
         return $conversation;
     }
