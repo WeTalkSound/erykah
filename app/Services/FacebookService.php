@@ -11,20 +11,33 @@ class FacebookService
 
     public function sendMessage(Actor $actor)
     {
-        $postData = [
+        $messages = (array) $actor->talk();
+
+        foreach ($messages as $message) {
+
+            $response = Http::post(
+                $this->getUrl(), $this->getMessageBody($actor, $message)
+            );
+
+            \Log::info($response->body());
+        }
+    }
+
+    protected function getMessageBody($actor, $message)
+    {
+        return [
             "recipient" => [
                 "id" => $actor->getConverser()->identifier
             ],
             "message" => [
-                "text" => $actor->talk()
+                "text" => $message
             ]
         ];
+    }
 
-        $url = static::FACEBOOK_MESSENGER_URL . "?access_token=" 
+    protected function getUrl()
+    {
+        return static::FACEBOOK_MESSENGER_URL . "?access_token=" 
                 . config("services.facebook.messenger_access_token");
-
-        $response = Http::post($url, $postData);
-
-        \Log::info($response->body());
     }
 }

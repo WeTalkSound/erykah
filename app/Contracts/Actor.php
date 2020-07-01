@@ -9,9 +9,9 @@ interface Actor
     /**
      * Converse
      * 
-     * @return string
+     * @return string|array
      */
-    public function talk(): string;
+    public function talk();
 
     /**
      * Should Talk
