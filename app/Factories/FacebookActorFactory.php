@@ -22,6 +22,8 @@ class FacebookActorFactory extends ActorFactory
             $event = $entry["messaging"][0];
         }
 
+        \Log::info(request()->getContent());
+
         $senderId = $event["sender"]["id"];
         $message = $event["message"]["text"];
 
