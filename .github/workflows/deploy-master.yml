@@ -22,6 +22,6 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Deploy Greatness
-      scripts: |
+      script: |
           git remote add heroku https://git.heroku.com/erykah.git
           git push heroku master
