@@ -18,8 +18,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - name: Deploy Greatness
-      uses: actions/checkout@v2
-      script: |
-          git remote add heroku https://git.heroku.com/erykah.git
-          git push heroku master
+    - uses: actions/checkout@v2
+
+    # Runs a single command using the runners shell
+    - name: Add heroku remote url
+      run: git remote add heroku https://git.heroku.com/erykah.git
+
+    - name: Push to herkou
+      run: git push heroku master
