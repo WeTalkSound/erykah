@@ -56,7 +56,8 @@ class EmailActor extends Actor
             ['email' => 'email']
         );
 
-        return $validator->passes();
+        // return $validator->passes();
+        return true;
     }
 
     protected function createConversation()
